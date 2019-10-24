@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'channels',
+    'rest_framework',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -120,10 +122,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = '/lobby/'
+LOGIN_URL = '/login/'
 
 CHANNEL_LAYERS = {
  "default": {
  "BACKEND": "asgiref.inmemory.ChannelLayer",
  "ROUTING": "cardgames.routing.channel_routing",
  },
+}
+
+# Channels
+ASGI_APPLICATION = 'cardgames.routing.application'
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': '/static/bundles/', # end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
+ 
+    }
 }

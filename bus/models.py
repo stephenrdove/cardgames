@@ -25,6 +25,14 @@ class Game(models.Model):
         return new_game
 
     @staticmethod
+    def get_available_games():
+        return Game.objects.filter(streak__lte=3)
+
+    @staticmethod
+    def get_games_for_player(user):
+        return Game.objects.filter(player=user)
+
+    @staticmethod
     def guess_color():
         prompt = "Red or Black?: "
         guess = Game._deal_with_input(prompt, ['R', 'B'])
@@ -80,14 +88,11 @@ class Game(models.Model):
         hand = self.get_current_hand()
         return Card.objects.filter(hand=hand).order_by('value')
 
-    def is_correct(self,func):
+    def is_correct(self):
         hand = self.get_cards_in_hand()
         next_card = self.get_current_card()
-        return func()(hand,next_card)
-    
-    def _which_func(self):
         funcs = [Game.guess_color, Game.guess_high_low, Game.guess_in_out, Game.guess_suit]
-        return funcs[self.streak]
+        return funcs[self.streak](hand,next_card)
     
     def next_turn(self):
         if self.streak == 4:
@@ -95,7 +100,7 @@ class Game(models.Model):
             return 
         self.new_card()
         print('Current Hand {}'.format(self.get_cards_in_hand()))
-        if self.is_correct(self._which_func()):
+        if self.is_correct():
             self.streak += 1
             print('Correct! Card was {}'.format(self.get_current_card()))
             if self.streak == 4:
@@ -108,6 +113,7 @@ class Game(models.Model):
         self.save()
 
     def new_card(self):
+        # this is a mess up
         current_card = self.get_current_card()
         hand = self.get_current_hand()
         if self.streak > 0:

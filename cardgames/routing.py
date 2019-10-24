@@ -1,6 +1,16 @@
-from channels.routing import route, route_class
-from channels.staticfiles import StaticFilesConsumer
- 
-# routes defined for channel calls
-# this is similar to the Django urls, but specifically for Channels
-channel_routing = []
+from django.conf.urls import url
+
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+
+from bus.consumers import LobbyConsumer
+
+
+application = ProtocolTypeRouter({
+    # WebSocket 
+    "websocket": AuthMiddlewareStack(
+        URLRouter([
+            url("lobby/", LobbyConsumer),
+        ])
+    ),
+})
