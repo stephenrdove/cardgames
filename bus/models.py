@@ -92,7 +92,7 @@ class Game(models.Model):
         hand = self.get_cards_in_hand()
         next_card = self.get_current_card()
         funcs = [Game.guess_color, Game.guess_high_low, Game.guess_in_out, Game.guess_suit]
-        return funcs[self.streak](hand,next_card)
+        return funcs[self.streak]()(hand,next_card)
     
     def next_turn(self):
         if self.streak == 4:

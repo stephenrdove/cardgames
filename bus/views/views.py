@@ -4,7 +4,10 @@ from django.contrib.auth import authenticate, login
 from bus.models import User, Game
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
- 
+
+def index(request):
+    return render(request,'cardgames/templates/home.html')
+
 class HomeView(TemplateView):
     template_name = 'home.html'
  
