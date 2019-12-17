@@ -38,9 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
     'rest_framework',
-    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -130,15 +128,4 @@ CHANNEL_LAYERS = {
  "BACKEND": "asgiref.inmemory.ChannelLayer",
  "ROUTING": "cardgames.routing.channel_routing",
  },
-}
-
-# Channels
-ASGI_APPLICATION = 'cardgames.routing.application'
-
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': '/static/bundles/', # end with slash
-        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json')
- 
-    }
 }

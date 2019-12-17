@@ -5,6 +5,39 @@ from bus.models import User, Game
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from bus.models import Game
+from bus.serializers import GameSerializer
+
+@csrf_exempt
+def game_list(request,user):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    if request.method == 'GET':
+        games = Game.objects.filter(player=user)
+        serializer = GameSerializer(games, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+
+@csrf_exempt
+def game_turn(request, pk):
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        game = Game.objects.get(pk=pk)
+    except Game.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = GameSerializer(game)
+        return JsonResponse(serializer.data)
+
+
+
 def index(request):
     return render(request,'cardgames/templates/home.html')
 
