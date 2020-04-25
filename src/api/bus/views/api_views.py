@@ -1,4 +1,4 @@
-from bus.models import Game
+from bus.models import Game, User
 from bus.serializers import GameSerializer
 from django.http import Http404
 from rest_framework.views import APIView
@@ -7,7 +7,7 @@ from rest_framework import status
 
 class GameDetail(APIView):
     """
-    Retrieve, update or delete a snippet instance.
+    Get the current game state
     """
     def get_game(self, pk):
         try:
@@ -20,18 +20,31 @@ class GameDetail(APIView):
         serializer = GameSerializer(game)
         return Response(serializer.data)
 
+class CreateGame(APIView):
+    """
+    Create a new game
+    """
+    def post(self, request, pk, format=None):
+        user = get_user(pk)
+        game = Game.create_new(user=user)
+        serializer = GameSerializer(game)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+ 
+
+
 class UserGames(APIView):
-    def get_user(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
     def get(self, request, pk, format=None):
-        user = self.get_user(pk)
+        user = get_user(pk)
         games = Game.objects.filter(player=user)
         serializer = GameSerializer(games, many=True)
         return Response(serializer.data)
 
+
+def get_user(user_id):
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            raise Http404
 
 '''
 @csrf_exempt
