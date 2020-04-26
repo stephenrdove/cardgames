@@ -1,11 +1,11 @@
-import { DefaultTheme } from 'styled-components';
+import { Theme } from '.';
 
-const light: DefaultTheme = {
+const light: Theme = {
   colors: {
     background: '#ECEFF4',
     primary: '#5E81AC',
-    secondary: ''
-  }
+    secondary: '',
+  },
 };
 
 export default light;

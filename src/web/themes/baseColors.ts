@@ -57,7 +57,7 @@ const baseColors: BaseColors = {
     700: '#616161',
     800: '#424242',
     900: '#212121',
-  }
+  },
 };
 
 export default baseColors;
