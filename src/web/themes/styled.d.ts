@@ -1,7 +1,12 @@
 import 'styled-components';
+import { Colors } from './colors';
 
 declare module 'styled-components' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  export interface DefaultTheme extends Theme {
+  export interface DefaultTheme {
+    colors: Colors & {
+      background: string;
+      primary: string;
+      secondary: string;
+    };
   }
 }

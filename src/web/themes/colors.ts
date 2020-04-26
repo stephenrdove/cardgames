@@ -1,4 +1,4 @@
-interface ColorGradiant {
+type ColorGradiant = {
   50: string;
   100: string;
   200: string;
@@ -9,9 +9,9 @@ interface ColorGradiant {
   700: string;
   800: string;
   900: string;
-}
+};
 
-export interface BaseColors {
+export interface Colors {
   // red: ColorGradiant;
   // pink: ColorGradiant;
   // purple: ColorGradiant;
@@ -33,7 +33,7 @@ export interface BaseColors {
   // blueGrey: ColorGradiant;
 }
 
-const baseColors: BaseColors = {
+const colors: Colors = {
   indigo: {
     50: '#e8eaf6',
     100: '#c5cae9',
@@ -60,4 +60,4 @@ const baseColors: BaseColors = {
   },
 };
 
-export default baseColors;
+export default colors;

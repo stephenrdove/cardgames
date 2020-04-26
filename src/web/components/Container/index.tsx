@@ -8,7 +8,7 @@ export const Button = styled.button`
 `;
 
 const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.background};
 `;
 
 export default Container;
