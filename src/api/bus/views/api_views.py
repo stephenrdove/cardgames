@@ -1,6 +1,7 @@
 from bus.models import Game, User
+from bus.models.turn import which_prompt
 from bus.serializers import GameSerializer
-from django.http import Http404
+from django.http import Http404,HttpResponseBadRequest, HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -19,13 +20,31 @@ class GameDetail(APIView):
         game = self.get_game(pk)
         serializer = GameSerializer(game)
         return Response(serializer.data)
+    
+    """
+    Plays the next turn
+        - Expects request with "selection": selection_option field
+            (i.e. "H" for higher or "B" for black)
+    """
+    def put(self, request, pk, format=None):
+        game = self.get_game(pk)
+        selection = request.data['selection']
+        options = which_prompt(game.streak)['options']
+        if game.completed or (selection not in options):
+            return HttpResponseBadRequest
+        game.next_turn(selection)
+        return HttpResponse
+
+
 
 class CreateGame(APIView):
     """
     Create a new game
+        - Expects request with "user": <user id> field
     """
-    def post(self, request, pk, format=None):
-        user = get_user(pk)
+    def post(self, request, format=None):
+        user_pk = request.data['user']
+        user = get_user(user_pk)
         game = Game.create_new(user=user)
         serializer = GameSerializer(game)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -46,29 +65,4 @@ def get_user(user_id):
         except User.DoesNotExist:
             raise Http404
 
-'''
-@csrf_exempt
-def game_list(request,user):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        games = Game.objects.filter(player=user)
-        serializer = GameSerializer(games, many=True)
-        return JsonResponse(serializer.data, safe=False)
 
-
-@csrf_exempt
-def game_turn(request, pk):
-    """
-    Retrieve, update or delete a code snippet.
-    """
-    try:
-        game = Game.objects.get(pk=pk)
-    except Game.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == 'GET':
-        serializer = GameSerializer(game)
-        return JsonResponse(serializer.data)
-'''
