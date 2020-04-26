@@ -1,12 +1,22 @@
 import { DefaultTheme } from 'styled-components';
 import colors from './colors';
+import clamp from '../utils/clamp';
 
 const light: DefaultTheme = {
   colors: {
     ...colors,
+    text: colors.grey[100],
     background: colors.grey[900],
-    primary: '#5E81AC',
+    backgroundContrast: colors.grey[700],
+    backgroundColor: (layer) => colors.grey[clamp(900 - layer * 100, 50, 900)],
+    backgroundOverlay: 'rgba(255, 255, 255, 0.08)',
+    primary: colors.indigo[500],
     secondary: '',
+  },
+
+  header: {
+    height: 65,
+    backgroundColor: '#333',
   },
 };
 

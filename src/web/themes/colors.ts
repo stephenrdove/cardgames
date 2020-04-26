@@ -1,4 +1,4 @@
-type ColorGradiant = {
+export type ColorGradiant = {
   50: string;
   100: string;
   200: string;
