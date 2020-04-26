@@ -14,19 +14,26 @@ module.exports = {
   ],
   extends: [
     'airbnb-typescript',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking'
   ],
   rules: {
-    "import/extensions": [
-      "error",
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': ['error'],
+    'import/extensions': [
+      'error',
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
+        'js': 'never',
+        'jsx': 'never',
+        'ts': 'never',
+        'tsx': 'never'
       }
     ],
     'react/jsx-filename-extension': [1, { 'extensions': ['.jsx', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
+    'react/no-unescaped-entities': 'off',
     'react/react-in-jsx-scope': 'off'
   },
 };

@@ -16,8 +16,8 @@ const BigButton = styled(Button)`
 export default function Home() {
   return (
     <div>
-      <Title>Let`&apos;`s ride the bus!</Title>
-      <BigButton>I`&apos;`m a button</BigButton>
+      <Title>Let's ride the bus!</Title>
+      <BigButton>I'm a button</BigButton>
     </div>
   );
 }

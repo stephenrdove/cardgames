@@ -3,5 +3,5 @@ export interface Theme {
     background: string;
     primary: string;
     secondary: string;
-  }
+  };
 }
