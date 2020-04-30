@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import { Game } from '..';
+import Title from '../components/Title';
 import GameList from '../components/GameList';
 
 const sampleGames: Game[] = [
@@ -34,18 +34,12 @@ const sampleGames: Game[] = [
   },
 ];
 
-const Title = styled.h1`
-  font-size: 50px;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  margin: 32px;
-  color: ${({ theme }) => theme.colors.text};
-`;
+
 
 export default function Home() {
   return (
     <div>
-      <Title>Ride the Bus</Title>
+      <Title>Games</Title>
       <GameList games={sampleGames} />
     </div>
   );

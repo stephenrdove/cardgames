@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 
-const black = 'white';
-
-export const Button = styled.button`
-  background: pink;
-  color: ${black};
-`;
-
 const Container = styled.div`
-  background-color: ${(props) => props.theme.colors.background};
 `;
 
 export default Container;

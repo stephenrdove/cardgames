@@ -5,7 +5,8 @@ const Footer = styled.div`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.footer.textColor};
+  background: ${({ theme }) => theme.footer.backgroundColor};
   min-height: 50px;
 `;
 

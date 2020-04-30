@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link'
 import { Game } from '../..';
 
 const List = styled.ul`
@@ -15,6 +16,10 @@ const ListItem = styled.li`
   &:hover {
     background-color: ${({ theme }) => theme.colors.backgroundOverlay};
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 type GameListProps = {
@@ -25,7 +30,9 @@ const GameList: React.SFC<GameListProps> = ({ games }) => (
   <List>
     {games.map((game) => (
       <ListItem key={game.id}>
-        {game.name}
+        <Link href={`/games/${game.id}`}>
+          {game.name}
+        </Link>
       </ListItem>
     ))}
   </List>

@@ -17,7 +17,13 @@ const light: DefaultTheme = {
   header: {
     height: 65,
     backgroundColor: colors.indigo[500],
+    textColor: colors.grey[100],
   },
+
+  footer: {
+    backgroundColor: colors.indigo[500],
+    textColor: colors.grey[100],
+  }
 };
 
 export default light;

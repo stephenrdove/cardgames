@@ -16,6 +16,12 @@ declare module 'styled-components' {
     header: {
       height: number;
       backgroundColor: string;
+      textColor: string;
+    };
+
+    footer: {
+      backgroundColor: string;
+      textColor: string;
     };
   }
 }
