@@ -1,46 +1,41 @@
-import { NextPage } from 'next'
-import { useRouter } from 'next/router'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { NextPage } from 'next';
+import { GetServerSideProps } from 'next';
+import { Game } from '../../';
+import Title from '../../components/Title';
 
-export default function  Game({
-    // gameId
-} : {
-    // gameId: number
-}) {
-    const router = useRouter();
-    const gameId = router.query.gameId;
-    return (
-        <div>
-            {gameId}
-        </div>
-    );
+type GamePageProps = {
+  game: Game;
 }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//     // const paths = getAllPostIds()
-//     return {
-//       paths,
-//       fallback: false
-//     }
-//   }
+const GamePage: NextPage<GamePageProps> = ({ game }) => {
+  return (
+    <div>
+      <Title>{game.name}</Title>
+    </div>
+  );
+};
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//     return {
-//         props: {
-//             gameId: params.gameId
-//         }
-//     };
-// };
+export const getServerSideProps: GetServerSideProps<GamePageProps> = async context => {
+  const { gameId } = context.query;
+  return {
+    props: {
+      game: {
+        id: parseInt(gameId as string),
+        name: 'Second game',
+        streak: 2,
+        player: 1,
+        current_card: '3D',
+        prompt: 'Inside or Outside?',
+        options: [
+          'I',
+          'O',
+          'P',
+        ],
+        current_hand: ['3D', '14D'],
+        completed: false,
+      }
+    }
+  };
+};
 
-// const Game: NextPage<{ gameId: number }> = (props) => {
-//     const router = useRouter();
-//     router.gameId;
-//     // router.
-//     // const { gameId } = router;
-
-//     return (
-//         <div>{props.gameId}</div>
-//     );
-// }
-
-// export default Game;
+export default GamePage;

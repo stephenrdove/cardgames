@@ -51,18 +51,12 @@ const ToggleCheckbox = styled.input`
   }
 `;
 
-// type ToggleProps = InputHTMLAttributes<HTMLInputElement>;
-
-// interface ToggleProps extends InputHTMLAttributes<HTMLInputElement> {
-//   value: boolean;
-// }
-
-type ToggleProps = {
+type Props = {
   value: boolean;
   onChange: (value: boolean) => void;
 };
 
-const Toggle: React.SFC<ToggleProps> = ({ value, onChange }) => (
+const Toggle: React.SFC<Props> = ({ value, onChange }) => (
   <Label>
     <ToggleCheckbox
       type="checkbox"

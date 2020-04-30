@@ -36,17 +36,14 @@ const HeaderWrapper = styled.nav`
   }
 `;
 
-type HeaderProps = {
-}
-
-const Header: React.SFC<HeaderProps> = ({ children }) => {
+const Header: React.SFC = () => {
   const [isDarkMode, setIsDarkMode] = useContext(ThemeContext);
   return (
     <>
       <HeaderWrapper>
         <div className="logo">
           <Link href='/'>
-            ride the bus
+            <a>ride the bus</a>
           </Link>
         </div>
         <div className="theme-toggle">
