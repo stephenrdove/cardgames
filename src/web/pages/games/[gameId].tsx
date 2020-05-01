@@ -1,21 +1,18 @@
-import { NextPage } from 'next';
-import { GetServerSideProps } from 'next';
-import { Game } from '../../';
+import { NextPage, GetServerSideProps } from 'next';
+import { Game } from '../..';
 import Title from '../../components/Title';
 
 type GamePageProps = {
   game: Game;
-}
-
-const GamePage: NextPage<GamePageProps> = ({ game }) => {
-  return (
-    <div>
-      <Title>{game.name}</Title>
-    </div>
-  );
 };
 
-export const getServerSideProps: GetServerSideProps<GamePageProps> = async context => {
+const GamePage: NextPage<GamePageProps> = ({ game }) => (
+  <div>
+    <Title>{game.name}</Title>
+  </div>
+);
+
+export const getServerSideProps: GetServerSideProps<GamePageProps> = async (context) => {
   const { gameId } = context.query;
   return {
     props: {
@@ -33,8 +30,8 @@ export const getServerSideProps: GetServerSideProps<GamePageProps> = async conte
         ],
         current_hand: ['3D', '14D'],
         completed: false,
-      }
-    }
+      },
+    },
   };
 };
 

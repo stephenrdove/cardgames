@@ -23,7 +23,7 @@ const light: DefaultTheme = {
   footer: {
     backgroundColor: colors.indigo[500],
     textColor: colors.grey[100],
-  }
+  },
 };
 
 export default light;

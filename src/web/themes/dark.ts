@@ -19,11 +19,11 @@ const light: DefaultTheme = {
     backgroundColor: '#333',
     textColor: colors.grey[100],
   },
-  
+
   footer: {
     backgroundColor: '#333',
     textColor: colors.grey[100],
-  }
+  },
 };
 
 export default light;

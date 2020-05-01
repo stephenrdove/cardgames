@@ -1,7 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 
-import { ThemeContextProvider } from '../contexts/ThemeContext';
+import { NewThemeContextProvider } from '../contexts/ThemeContext';
 import GlobalStyles from '../components/globals/GlobalStyles';
 
 import Header from '../components/globals/Header';
@@ -12,14 +12,24 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <ThemeContextProvider>
+      <NewThemeContextProvider>
         <GlobalStyles />
         <Header />
         <BodyContent>
           <Component {...pageProps} />
         </BodyContent>
         <Footer>This is a footer</Footer>
-      </ThemeContextProvider>
+      </NewThemeContextProvider>
     );
+    // return (
+    //   <ThemeContextProvider>
+    //     <GlobalStyles />
+    //     <Header />
+    //     <BodyContent>
+    //       <Component {...pageProps} />
+    //     </BodyContent>
+    //     <Footer>This is a footer</Footer>
+    //   </ThemeContextProvider>
+    // );
   }
 }

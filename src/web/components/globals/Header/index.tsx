@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-import { ThemeContext } from '../../../contexts/ThemeContext';
-import Toggle from '../../Toggle';
 import { useContext } from 'react';
 import Link from 'next/link';
+import styled from 'styled-components';
+import { NewThemeContext } from '../../../contexts/ThemeContext';
+import Toggle from '../../Toggle';
+import darkTheme from '../../../themes/dark';
 
 const HeaderPadding = styled.div`
   width: 100%;
@@ -37,22 +38,23 @@ const HeaderWrapper = styled.nav`
 `;
 
 const Header: React.SFC = () => {
-  const [isDarkMode, setIsDarkMode] = useContext(ThemeContext);
+  // const [isDarkMode, setIsDarkMode] = useContext(ThemeContext);
+  const { state, dispatch } = useContext(NewThemeContext);
   return (
     <>
       <HeaderWrapper>
         <div className="logo">
-          <Link href='/'>
+          <Link href="/">
             <a>ride the bus</a>
           </Link>
         </div>
         <div className="theme-toggle">
-          <Toggle value={isDarkMode} onChange={setIsDarkMode} />
+          <Toggle value={state.theme === darkTheme} onChange={() => dispatch({ type: 'TOGGLE_THEME' })} />
         </div>
       </HeaderWrapper>
       <HeaderPadding />
     </>
   );
-}
+};
 
 export default Header;

@@ -31,6 +31,8 @@ module.exports = {
         'tsx': 'never'
       }
     ],
+    'jsx-a11y/anchor-is-valid': 'off',
+    'radix': 'off',
     'react/jsx-filename-extension': [1, { 'extensions': ['.jsx', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/no-unescaped-entities': 'off',
