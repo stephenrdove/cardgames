@@ -9,6 +9,7 @@
     "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "next": "9.3.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -20,6 +21,7 @@
     "@types/styled-components": "^5.1.0",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.29.0",
+    "babel-plugin-const-enum": "^1.0.1",
     "babel-plugin-styled-components": "^1.10.7",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",

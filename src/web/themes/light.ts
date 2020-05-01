@@ -12,6 +12,8 @@ const light: DefaultTheme = {
     backgroundOverlay: 'rgba(0, 0, 0, 0.04)',
     primary: colors.indigo[500],
     secondary: '',
+    white: '#ffffff',
+    black: '#000000',
   },
 
   header: {

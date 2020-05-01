@@ -11,6 +11,8 @@ declare module 'styled-components' {
       backgroundContrast: string;
       primary: string;
       secondary: string;
+      white: string;
+      black: string;
     };
 
     header: {

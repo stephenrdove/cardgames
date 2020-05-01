@@ -1,4 +1,9 @@
-import { useState, createContext, useReducer, Dispatch } from 'react';
+import {
+  useState,
+  createContext,
+  useReducer,
+  Dispatch,
+} from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { createHookContext } from './base';
 
@@ -16,11 +21,11 @@ type ThemeAction =
 
 const initialState: ThemeState = { theme: darkTheme };
 
-type ThemeContextType = {state: ThemeState; dispatch: Dispatch<ThemeAction>};
+type ThemeContextType = { state: ThemeState; dispatch: Dispatch<ThemeAction> };
 
 export const NewThemeContext = createContext<ThemeContextType>({
   state: initialState,
-  dispatch: () => {},
+  dispatch: () => { },
 });
 
 function themeReducer(state: ThemeState, action: ThemeAction): ThemeState {
