@@ -8,7 +8,7 @@ type Props = {
   games: Game[];
 };
 
-const HomePage: NextPage<Props> = ({ games }) => (
+const HomePage: NextPage<Props> = ({ games = [] }) => (
   <div>
     <Title>Games</Title>
     <GameList games={games} />
@@ -17,8 +17,15 @@ const HomePage: NextPage<Props> = ({ games }) => (
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const response = await fetch(`http://127.0.0.1:8000/bus/user/${1}/`);
-  const gamesJson = await response.json() as Game[];
+  if (response.status === 404) {
+    return {
+      props: {
+        games: [],
+      },
+    };
+  }
 
+  const gamesJson = await response.json() as Game[];
   return {
     props: {
       games: gamesJson,
