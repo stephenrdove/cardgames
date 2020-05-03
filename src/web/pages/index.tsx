@@ -1,6 +1,7 @@
 import { NextPage, GetServerSideProps } from 'next';
 import fetch from 'isomorphic-fetch';
 import { Game } from '..';
+import Container from '../components/Container';
 import Title from '../components/Title';
 import GameList from '../components/GameList';
 
@@ -9,10 +10,10 @@ type Props = {
 };
 
 const HomePage: NextPage<Props> = ({ games = [] }) => (
-  <div>
+  <Container>
     <Title>Games</Title>
     <GameList games={games} />
-  </div>
+  </Container>
 );
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {

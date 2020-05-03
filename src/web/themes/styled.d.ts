@@ -11,6 +11,7 @@ declare module 'styled-components' {
       backgroundContrast: string;
       primary: string;
       secondary: string;
+      danger: string;
       white: string;
       black: string;
     };
