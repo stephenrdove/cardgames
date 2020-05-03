@@ -18,7 +18,10 @@ from django.urls import include, path
 from bus.views import CreateUserView,LobbyView,HomeView
 from django.contrib.auth import views as auth_views
 
- 
+versioned_urlpatterns = [
+    path('accounts/', include('rest_registration.api.urls')),
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', CreateUserView.as_view()),
@@ -26,5 +29,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), {'next_page': '/'}),
     path('lobby/', LobbyView.as_view()),
     path('bus/',include('bus.urls')),
-    path('', HomeView.as_view())
+    path('', HomeView.as_view()),
+    path('api/v1/', include(versioned_urlpatterns)),
 ]

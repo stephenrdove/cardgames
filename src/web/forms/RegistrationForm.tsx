@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import fetch from 'isomorphic-fetch';
 import {
   Form,
@@ -7,38 +8,36 @@ import {
 
 type RegistrationFields = {
   username: string;
-  password1: string;
-  password2: string;
-  csrfmiddlewaretoken: string;
+  password: string;
+  password_confirm: string;
 };
 
 export const RegistrationForm = () => (
   <Form<RegistrationFields>
     initialValues={{
       username: '',
-      password1: '',
-      password2: '',
-      csrfmiddlewaretoken: 'Zkl3LO4o6qfI1RLjQwHuCRCiD49a9e7CXSiSh7dnscghJqIhuiZUAtrMj1MgvbZ8',
+      password: '',
+      password_confirm: '',
     }}
-    onSubmit={async ({ csrfmiddlewaretoken, ...values }) => {
-      const response = await fetch('http://localhost:8000/register/', {
+    onSubmit={async (values) => {
+      const response = await fetch('http://localhost:8000/api/v1/accounts/register/', {
         method: 'POST',
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, email: values.username }),
         headers: {
-          'X-CSRFToken': csrfmiddlewaretoken,
+          'Content-Type': 'application/json',
         },
       });
 
-      console.log(response);
-
-      const json = await response.text();
-
-      console.log(json);
+      if (response.ok) {
+        Router.push('/dashboard');
+      } else {
+        alert(await response.text()); // TODO: use proper error handling
+      }
     }}
   >
-    <Field name="username" label="Username" autoComplete="username" autoFocus />
-    <Field name="password1" label="Password" type="password" autoComplete="new-password" />
-    <Field name="password1" label="Password" type="password" autoComplete="new-password" />
+    <Field name="username" label="Email" autoComplete="username" type="email" autoFocus />
+    <Field name="password" label="Password" type="password" autoComplete="new-password" />
+    <Field name="password_confirm" label="Password" type="password" autoComplete="new-password" />
     <SubmitButton />
   </Form>
 );

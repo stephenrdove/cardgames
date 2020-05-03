@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_registration',
     'corsheaders',
 ]
 
@@ -138,3 +139,11 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
        'http://localhost:3000',
 )
+
+# REST Registration Configuration
+# https://django-rest-registration.readthedocs.io/
+REST_REGISTRATION = {
+    'REGISTER_VERIFICATION_ENABLED': False,
+    'REGISTER_EMAIL_VERIFICATION_ENABLED': False,
+    'RESET_PASSWORD_VERIFICATION_ENABLED': False,
+}
