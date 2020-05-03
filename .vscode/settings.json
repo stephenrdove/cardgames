@@ -1,0 +1,7 @@
+{
+  "eslint.workingDirectories": [
+    "./src/web/"
+  ],
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single"
+}
