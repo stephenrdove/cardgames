@@ -1,4 +1,4 @@
-from . import card 
+from ...cards.models import card 
 
 def which_prompt(streak):
     if streak == 0:

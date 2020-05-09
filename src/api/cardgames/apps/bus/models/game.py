@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from . import card
+from ...cards.models import card
 from . import turn
 
 class Game(models.Model):
@@ -11,6 +11,9 @@ class Game(models.Model):
     streak = models.IntegerField(default=0)
     rounds = models.IntegerField(default=1)
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "bus_game"
 
 
     @staticmethod
@@ -92,5 +95,5 @@ class Game(models.Model):
     def __str__(self):
         return 'Game {}'.format(self.id)
 
-from .deck import Deck
+from ...cards.models.deck import Deck
 from .hand import Hand

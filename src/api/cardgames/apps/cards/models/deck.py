@@ -2,14 +2,17 @@ import numpy as np
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from .game import Game
-from .hand import Hand
+from ...bus.models.game import Game
+from ...bus.models.hand import Hand
 
 class Deck(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     ace_high = models.BooleanField(default=False)
     cards = models.CharField(default="",max_length=200)
     card_count = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = 'cards_deck'
 
     @staticmethod
     def _create_cards(ace_high):

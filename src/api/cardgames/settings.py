@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'bus.apps.BusConfig',
+    'cardgames.apps.cards.apps.CardsConfig',
+    'cardgames.apps.bus.apps.BusConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

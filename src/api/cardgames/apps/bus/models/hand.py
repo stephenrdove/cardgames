@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 from .game import Game
 
 class Hand(models.Model):
+
+    class Meta:
+        db_table = "bus_hand"
+
     player = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     cards = models.CharField(default="",max_length=200)
