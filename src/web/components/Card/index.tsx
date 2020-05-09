@@ -1,4 +1,5 @@
 import styled, { ThemeProps, DefaultTheme } from 'styled-components';
+import CardPortrait from './CardPortrait';
 
 type Props = {
   card: CardInfo;
@@ -105,7 +106,9 @@ const NewCard: React.FC<Props> = ({ card }) => (
       <span className="value">{card.value}</span>
       <span className="suit">{card.suitSymbol}</span>
     </div>
-    <div className="portrait" />
+    <CardPortrait {...card} />
+    {/* <div className="portrait">
+    </div> */}
     <div className="gutter">
       <span className="value">{card.value}</span>
       <span className="suit">{card.suitSymbol}</span>
