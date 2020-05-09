@@ -1,28 +1,37 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-case-declarations */
 import styled from 'styled-components';
 import getCardLayout from '@utils/getCardLayout';
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
   flex-grow: 1;
 
   ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     list-style: none;
-    padding: 10px;
+    padding: 0px;
 
-    &.row {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+    &:only-child {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    &:nth-child(1) {
+      order: 1;
+    }
+    &:nth-child(2) {
+      order: 3;
+    }
+    &:nth-child(3) {
+      order: 2;
     }
 
     li {
-      font-size: 60px;
-      line-height: 40px;
+      font-size: 70px;
+      line-height: 50px;
     }
   }
 `;
@@ -30,45 +39,27 @@ const Wrapper = styled.div`
 const CardPortrait: React.FC<CardInfo> = ({ value, suitSymbol }) => {
   const portraitContent: JSX.Element[] = [];
 
-  switch (value) {
-    case '2':
-    case '3':
-      const column: JSX.Element[] = [];
+  const intValue = parseInt(value);
+  if (!Number.isNaN(intValue)) {
+    const layout = getCardLayout(intValue);
 
-      for (let i = 0; i < parseInt(value); i++) {
-        column.push(<li key={i}>{suitSymbol}</li>);
+    const columns: JSX.Element[][] = [];
+
+    let currentColumn = -1; // will be incremented on first iteration
+
+    for (let i = 0; i < intValue; i++) {
+      if (i % layout.columnMax === 0) {
+        currentColumn++;
+        columns[currentColumn] = [];
       }
 
-      portraitContent.push(<ul key="col" className="column">{column}</ul>);
-      break;
-    case '9':
-      const row1: JSX.Element[] = [];
-      const row2: JSX.Element[] = [];
-      const row3: JSX.Element[] = [];
+      columns[currentColumn].push(<li key={i}>{suitSymbol}</li>);
+    }
 
-      for (let i = 0; i < parseInt(value); i++) {
-        switch (i % 3) {
-          case 0:
-            row1.push(<li key={i}>{suitSymbol}</li>);
-            break;
-          case 1:
-            row2.push(<li key={i}>{suitSymbol}</li>);
-            break;
-          case 2:
-            row3.push(<li key={i}>{suitSymbol}</li>);
-            break;
-          default:
-            throw new Error(`Recieved an unexpected modulus: ${i % 3}`);
-        }
-      }
-
-      portraitContent.push(<ul key="1" className="row">{row1}</ul>);
-      portraitContent.push(<ul key="2" className="row">{row2}</ul>);
-      portraitContent.push(<ul key="3" className="row">{row3}</ul>);
-
-      break;
-    default:
-      throw new Error(`Received an invalid value: ${value}`);
+    columns.forEach((col, i) => {
+      // eslint-disable-next-line react/no-array-index-key
+      portraitContent.push(<ul key={i}>{col}</ul>);
+    });
   }
 
   return (
