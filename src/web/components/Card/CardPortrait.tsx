@@ -1,6 +1,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-case-declarations */
 import styled from 'styled-components';
+import getCardLayout from '@utils/getCardLayout';
 
 const Wrapper = styled.div`
   display: flex;

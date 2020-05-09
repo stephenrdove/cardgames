@@ -12,3 +12,6 @@ package*.json
 
 # ignore markdown files
 *.md
+
+# ignore jest config
+jest.config.js
