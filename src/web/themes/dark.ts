@@ -2,6 +2,9 @@ import { DefaultTheme } from 'styled-components';
 import colors from './colors';
 import clamp from '../utils/clamp';
 
+const primary = colors.indigo[500];
+const secondary = '';
+
 const light: DefaultTheme = {
   colors: {
     ...colors,
@@ -10,8 +13,8 @@ const light: DefaultTheme = {
     backgroundContrast: colors.grey[700],
     backgroundColor: (layer) => colors.grey[clamp(900 - layer * 100, 50, 900)],
     backgroundOverlay: 'rgba(255, 255, 255, 0.08)',
-    primary: colors.indigo[500],
-    secondary: '',
+    primary,
+    secondary,
     danger: 'red',
     white: '#ffffff',
     black: '#000000',
@@ -26,6 +29,17 @@ const light: DefaultTheme = {
   footer: {
     backgroundColor: '#333',
     textColor: colors.grey[100],
+  },
+
+  buttons: {
+    primary,
+    secondary,
+    text: '#ffffff',
+  },
+
+  card: {
+    red: 'red',
+    black: 'black',
   },
 };
 

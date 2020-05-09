@@ -4,16 +4,24 @@ import Title from '../../components/Title';
 import Options from '../../components/Options';
 import Card from '../../components/Card';
 import getCard from '../../utils/getCard';
+import styled from 'styled-components';
 
 type GamePageProps = {
   game: Game;
 };
 
+const GameBoard = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const GamePage: NextPage<GamePageProps> = ({ game }) => (
   <div>
     <Title>{game.name}</Title>
-    <Options options={game.options} />
-    <Card card={getCard(game.current_card)} />
+    <GameBoard>
+      <Card card={getCard(game.current_card)} />
+      <Options options={game.options} />
+    </GameBoard>
   </div>
 );
 
@@ -24,21 +32,6 @@ export const getServerSideProps: GetServerSideProps<GamePageProps> = async (cont
   return {
     props: {
       game: gameData,
-      // game: {
-      //   id: parseInt(gameId as string),
-      //   name: 'Second game',
-      //   streak: 2,
-      //   player: 1,
-      //   current_card: '3D',
-      //   prompt: 'Inside or Outside?',
-      //   options: [
-      //     'I',
-      //     'O',
-      //     'P',
-      //   ],
-      //   current_hand: ['3D', '14D'],
-      //   completed: false,
-      // },
     },
   };
 };

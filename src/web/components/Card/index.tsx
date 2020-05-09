@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { ThemeProps, DefaultTheme } from 'styled-components';
 
 type Props = {
   card: CardInfo;
@@ -7,6 +7,8 @@ type Props = {
 const cardHeight = 3.5;
 const cardWidth = 2.5;
 const cardGutterWidth = 0.45;
+
+const cardColor = ({ color, theme }: ThemeProps<DefaultTheme> & CardInfo) => (color === 'red' ? theme.card.red : theme.card.black);
 
 const CardWrapper = styled.div`
   display: flex;
@@ -21,7 +23,7 @@ const CardWrapper = styled.div`
   box-shadow: 0 2px 2px ${({ theme }) => theme.colors.grey[900]};
 
   * {
-    color: red;
+    color: ${cardColor};
   }
 
   .portrait {
@@ -32,7 +34,7 @@ const CardWrapper = styled.div`
 `;
 
 const Card: React.SFC<Props> = ({ card }) => (
-  <CardWrapper>
+  <CardWrapper {...card}>
     <div className="portrait">
       I'm a card:
       {card.value}

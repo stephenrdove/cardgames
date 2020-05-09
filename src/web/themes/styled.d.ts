@@ -26,5 +26,16 @@ declare module 'styled-components' {
       backgroundColor: string;
       textColor: string;
     };
+
+    buttons: {
+      primary: string;
+      secondary: string;
+      text: string;
+    };
+
+    card: {
+      red: string;
+      black: string;
+    };
   }
 }
