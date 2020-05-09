@@ -45,15 +45,15 @@ const CardPortrait: React.FC<CardInfo> = ({ value, suitSymbol }) => {
 
     const columns: JSX.Element[][] = [];
 
-    let currentColumn = -1; // will be incremented on first iteration
+    let columnIndex = -1; // incremented on first iteration
 
     for (let i = 0; i < intValue; i++) {
-      if (i % layout.columnMax === 0) {
-        currentColumn++;
-        columns[currentColumn] = [];
+      if (i % layout.maxColumnItems === 0) {
+        columnIndex++;
+        columns[columnIndex] = [];
       }
 
-      columns[currentColumn].push(<li key={i}>{suitSymbol}</li>);
+      columns[columnIndex].push(<li key={i}>{suitSymbol}</li>);
     }
 
     columns.forEach((col, i) => {

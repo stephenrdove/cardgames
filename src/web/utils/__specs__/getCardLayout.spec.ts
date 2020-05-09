@@ -2,27 +2,26 @@ import getCardLayout from '../getCardLayout';
 
 type CardLayoutTheory = {
   value: number;
-  columnMax: number;
+  maxColumnItems: number;
   columnCount: number;
 };
 
 describe('getCardLayout', () => {
   [
-    { value: 10, columnMax: 4, columnCount: 3 },
-    { value: 9, columnMax: 4, columnCount: 3 },
-    { value: 8, columnMax: 3, columnCount: 3 },
-    { value: 7, columnMax: 3, columnCount: 3 },
-    { value: 6, columnMax: 3, columnCount: 2 },
-    { value: 5, columnMax: 2, columnCount: 3 },
-    { value: 4, columnMax: 2, columnCount: 2 },
-    { value: 3, columnMax: 3, columnCount: 1 },
-    { value: 2, columnMax: 3, columnCount: 1 },
-  ].forEach(({ value, columnMax, columnCount }: CardLayoutTheory) => {
-    it(`returns column max of ${columnMax} for value ${value}`, () => {
+    { value: 10, maxColumnItems: 4 },
+    { value: 9, maxColumnItems: 4 },
+    { value: 8, maxColumnItems: 3 },
+    { value: 7, maxColumnItems: 3 },
+    { value: 6, maxColumnItems: 3 },
+    { value: 5, maxColumnItems: 2 },
+    { value: 4, maxColumnItems: 2 },
+    { value: 3, maxColumnItems: 3 },
+    { value: 2, maxColumnItems: 3 },
+  ].forEach(({ value, maxColumnItems }: CardLayoutTheory) => {
+    it(`returns column max of ${maxColumnItems} for value ${value}`, () => {
       const layout = getCardLayout(value);
 
-      expect(layout.columnMax).toBe(columnMax);
-      expect(layout.columnCount).toBe(columnCount);
+      expect(layout.maxColumnItems).toBe(maxColumnItems);
     });
   });
 });
