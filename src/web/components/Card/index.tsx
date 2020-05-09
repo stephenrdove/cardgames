@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { Card as CardDefinition } from '../..';
 
 type Props = {
-  card: CardDefinition;
+  card: CardInfo;
 };
 
 const cardHeight = 3.5;

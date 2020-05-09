@@ -1,6 +1,11 @@
-export enum CardSuit {
-  Hearts = '\u2665',
-  Clubs = '\u2663',
-  Diamonds = '\u2666',
-  Spades = '\u2660'
-}
+declare type CardSuit =
+  | 'Hearts'
+  | 'Clubs'
+  | 'Diamonds'
+  | 'Spades';
+
+declare type CardSuitSymbol =
+  | '\u2665' // Heart
+  | '\u2663' // Club
+  | '\u2666' // Diamond
+  | '\u2660'; // Spade

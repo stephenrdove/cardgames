@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Game } from '../..';
 import { List, ListItem, EmptyList } from '../List';
 
 type Props = {
@@ -16,7 +15,7 @@ const GameList: React.FC<Props> = ({ games }) => {
       {games.map((game) => (
         <ListItem key={game.id}>
           <Link href={`/games/${game.id}`}>
-            <a>{game.name}</a>
+            <a>{game.name ?? 'TODO: add game names'}</a>
           </Link>
         </ListItem>
       ))}

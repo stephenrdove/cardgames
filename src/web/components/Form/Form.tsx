@@ -7,9 +7,9 @@ import {
 } from 'formik';
 
 type Props<TFields> = {
-  initialValues: TFields,
+  initialValues: TFields;
   onSubmit: (values: TFields, formikHelpers: FormikHelpers<TFields>) => void | Promise<any>;
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | Function;
   className?: string;
 };
 

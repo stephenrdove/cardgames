@@ -1,4 +1,3 @@
-export enum CardColor {
-  Red = 'red',
-  Black = 'black'
-}
+declare type CardColor =
+  | 'red'
+  | 'black';

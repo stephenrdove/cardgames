@@ -1,6 +1,5 @@
 import { NextPage, GetServerSideProps } from 'next';
 import fetch from 'isomorphic-fetch';
-import { Game } from '../..';
 import Title from '../../components/Title';
 import Options from '../../components/Options';
 import Card from '../../components/Card';
