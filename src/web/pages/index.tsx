@@ -4,7 +4,7 @@ import Title from '@components/Title';
 import Button from '@components/Button';
 import GameList from '@components/GameList';
 import createGame from '@actions/createGame';
-import getGames from '@actions/getGames';
+import getAllGames from '@actions/getAllGames';
 
 type Props = {
   games: Game[];
@@ -19,7 +19,7 @@ const HomePage: NextPage<Props> = ({ games = [] }) => (
 );
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const games = await getGames(1);
+  const games = await getAllGames(1);
 
   return {
     props: {
