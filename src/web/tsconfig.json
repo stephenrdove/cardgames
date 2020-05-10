@@ -20,6 +20,7 @@
     "baseUrl": ".",
     "paths": {
       "@env": ["./environment.ts"],
+      "@actions/*": ["./actions/*"],
       "@components/*": ["./components/*"],
       "@contexts/*": ["./contexts/*"],
       "@forms/*": ["./forms/*"],

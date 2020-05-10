@@ -58,7 +58,8 @@ const CardPortrait: React.FC<CardInfo> = ({ value, suitSymbol }) => {
         columns[columnIndex] = [];
       }
 
-      const isReversed = modulus >= Math.floor(layout.maxColumnItems / 2); // TODO: support partial columns
+      // TODO: support partial columns
+      const isReversed = modulus >= Math.floor(layout.maxColumnItems / 2);
 
       columns[columnIndex].push(
         <li
