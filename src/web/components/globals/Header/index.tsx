@@ -21,6 +21,7 @@ const HeaderWrapper = styled.nav`
   width: 100%;
   height: ${({ theme }) => theme.header.height}px;
   background-color: ${({ theme }) => theme.header.backgroundColor};
+  z-index: 100;
 
   .logo {
     margin-left: 16px;

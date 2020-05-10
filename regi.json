@@ -1,0 +1,25 @@
+{
+  "apps": [
+    {
+      "name": "api",
+      "paths": [
+        "./src/api"
+      ],
+      "port": 8000,
+      "framework": "django",
+    },
+    {
+      "name": "web",
+      "paths": [
+        "./src/web"
+      ],
+      "port": 3000,
+      "framework": "node",
+      "commands": {
+        "start": "run dev"
+      }
+    }
+  ],
+  "tests": [],
+  "services": []
+}

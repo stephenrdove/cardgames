@@ -1,10 +1,10 @@
 import { NextPage, GetServerSideProps } from 'next';
-import fetch from 'isomorphic-fetch';
-import Title from '../../components/Title';
-import Options from '../../components/Options';
-import Card from '../../components/Card';
-import getCard from '../../utils/getCard';
 import styled from 'styled-components';
+import fetch from 'isomorphic-fetch';
+import { ApiUrl } from '@env';
+import Title from '@components/Title';
+import PlayerHand from '@components/PlayerHand';
+import Options from '@components/Options';
 
 type GamePageProps = {
   game: Game;
@@ -15,23 +15,43 @@ const GameBoard = styled.div`
   flex-direction: row;
 `;
 
-const GamePage: NextPage<GamePageProps> = ({ game }) => (
-  <div>
-    <Title>{game.name}</Title>
-    <GameBoard>
-      <Card card={getCard(game.current_card)} />
-      <Options options={game.options} />
-    </GameBoard>
-  </div>
-);
+const GamePage: NextPage<GamePageProps> = ({ game }) => {
+  if (game == null) {
+    return null;
+  }
+
+  console.log(game);
+
+  return (
+    <div>
+      <Title>{game.name}</Title>
+      <GameBoard>
+        <PlayerHand cards={game.current_hand} />
+        {/* {game.current_card
+          ? <Card card={getCard(game.current_card)} />
+          : <span>TODO: empty card</span>} */}
+        <Options gameId={game.id} options={game.options} />
+      </GameBoard>
+    </div>
+  );
+};
 
 export const getServerSideProps: GetServerSideProps<GamePageProps> = async (context) => {
   const { gameId } = context.query;
-  const response = await fetch(`http://127.0.0.1:8000/bus/game/${gameId}`);
-  const gameData = await response.json() as Game;
+  const response = await fetch(`${ApiUrl}/bus/game/${gameId}`);
+
+  if (response.ok) {
+    const gameData = await response.json() as Game;
+    return {
+      props: {
+        game: gameData,
+      },
+    };
+  }
+
   return {
     props: {
-      game: gameData,
+      game: null as Game,
     },
   };
 };

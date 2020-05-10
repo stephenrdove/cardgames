@@ -1,7 +1,21 @@
 {
   "plugins": [
     ["styled-components", { "ssr": true, "displayName": true, "preprocess": false } ],
-    ["const-enum", { "transform": "constObject" }]
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@env": "./environment.ts",
+          "@actions": "./actions",
+          "@components": "./components",
+          "@contexts": "./contexts",
+          "@forms": "./forms",
+          "@themes": "./themes",
+          "@types": "./types",
+          "@utils": "./utils"
+        }
+      }
+    ]
   ],
   "presets": ["next/babel"]
 }
