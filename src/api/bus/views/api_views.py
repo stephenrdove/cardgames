@@ -14,7 +14,7 @@ class GameDetail(APIView):
         try:
             return Game.objects.get(pk=pk)
         except Game.DoesNotExist:
-            raise Http404
+            raise Http404('<h1>Game Does Not Exist</h1>')
 
     def get(self, request, pk, format=None):
         game = self.get_game(pk)
@@ -31,9 +31,9 @@ class GameDetail(APIView):
         selection = request.data['selection']
         options = which_prompt(game.streak)['options']
         if game.completed or (selection not in options):
-            return HttpResponseBadRequest
+            return HttpResponseBadRequest('<h1>Bad Selection or Game Completed</h1>')
         game.next_turn(selection)
-        return HttpResponse
+        return HttpResponse('<h1>Game Updated</h1>')
 
 
 
@@ -63,6 +63,6 @@ def get_user(user_id):
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
-            raise Http404
+            raise Http404('<h1>User Does Not Exist</h1>')
 
 
