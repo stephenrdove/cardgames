@@ -1,7 +1,7 @@
-import { postRequest } from './apiRequest';
+import { putRequest } from './apiRequest';
 
 const playTurn = (gameId: number, selection: string) => {
-  postRequest<any>(`/bus/game/${gameId}/`, { selection })
+  putRequest<any>(`/bus/game/${gameId}/`, { selection })
     .then((response) => {
       console.log(response);
     });

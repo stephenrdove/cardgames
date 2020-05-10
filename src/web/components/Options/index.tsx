@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
 const Options: React.FC<Props> = ({ gameId, options }) => (
   <Wrapper>
-    {options.map((option) => (
+    {options && options.map((option) => (
       <button
         key={option}
         type="button"

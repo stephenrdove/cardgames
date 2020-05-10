@@ -21,7 +21,8 @@ const CardWraper = styled.div`
   margin: 0 16px;
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.white};
-  box-shadow: 0 2px 2px ${({ theme }) => theme.colors.grey[900]};
+  box-shadow: 0 2px 2px ${({ theme }) => theme.colors.grey[900]},
+    0 0px 0px 1px rgba(0,0,0,0.2);
 
   * {
     color: ${cardColor};

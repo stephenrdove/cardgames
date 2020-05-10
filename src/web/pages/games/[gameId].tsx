@@ -2,10 +2,9 @@ import { NextPage, GetServerSideProps } from 'next';
 import styled from 'styled-components';
 import fetch from 'isomorphic-fetch';
 import { ApiUrl } from '@env';
-import Title from '../../components/Title';
-import Options from '../../components/Options';
-import Card from '../../components/Card';
-import getCard from '../../utils/getCard';
+import Title from '@components/Title';
+import PlayerHand from '@components/PlayerHand';
+import Options from '@components/Options';
 
 type GamePageProps = {
   game: Game;
@@ -27,9 +26,10 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => {
     <div>
       <Title>{game.name}</Title>
       <GameBoard>
-        {game.current_card
+        <PlayerHand cards={game.current_hand} />
+        {/* {game.current_card
           ? <Card card={getCard(game.current_card)} />
-          : <span>TODO: empty card</span>}
+          : <span>TODO: empty card</span>} */}
         <Options gameId={game.id} options={game.options} />
       </GameBoard>
     </div>

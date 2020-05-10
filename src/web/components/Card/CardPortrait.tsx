@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     list-style: none;
     padding: 0px;
 
@@ -58,8 +58,9 @@ const CardPortrait: React.FC<CardInfo> = ({ value, suitSymbol }) => {
         columns[columnIndex] = [];
       }
 
-      // TODO: support partial columns
-      const isReversed = modulus >= Math.floor(layout.maxColumnItems / 2);
+      const columnMaxOffset = Math.max(0, layout.maxColumnItems * (columnIndex + 1) - intValue);
+      const columnItemCount = layout.maxColumnItems - columnMaxOffset;
+      const isReversed = i % columnItemCount >= Math.ceil(columnItemCount / 2);
 
       columns[columnIndex].push(
         <li
