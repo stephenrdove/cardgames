@@ -19,6 +19,7 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@env": ["./environment.ts"],
       "@components/*": ["./components/*"],
       "@contexts/*": ["./contexts/*"],
       "@forms/*": ["./forms/*"],

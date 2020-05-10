@@ -32,6 +32,10 @@ const Wrapper = styled.div`
     li {
       font-size: 70px;
       line-height: 50px;
+
+      &.reversed {
+        transform: rotate(180deg);
+      }
     }
   }
 `;
@@ -48,12 +52,22 @@ const CardPortrait: React.FC<CardInfo> = ({ value, suitSymbol }) => {
     let columnIndex = -1; // incremented on first iteration
 
     for (let i = 0; i < intValue; i++) {
-      if (i % layout.maxColumnItems === 0) {
+      const modulus = i % layout.maxColumnItems;
+      if (modulus === 0) {
         columnIndex++;
         columns[columnIndex] = [];
       }
 
-      columns[columnIndex].push(<li key={i}>{suitSymbol}</li>);
+      const isReversed = modulus >= Math.floor(layout.maxColumnItems / 2); // TODO: support partial columns
+
+      columns[columnIndex].push(
+        <li
+          key={i}
+          className={isReversed ? 'reversed' : null}
+        >
+          {suitSymbol}
+        </li>,
+      );
     }
 
     columns.forEach((col, i) => {

@@ -5,12 +5,13 @@
       "module-resolver",
       {
         "alias": {
+          "@env": "./environment.ts",
           "@components": "./components",
           "@contexts": "./contexts",
           "@forms": "./forms",
           "@themes": "./themes",
           "@types": "./types",
-          "@utils": "./utils",
+          "@utils": "./utils"
         }
       }
     ]

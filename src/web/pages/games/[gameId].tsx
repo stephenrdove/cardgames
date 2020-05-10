@@ -1,6 +1,7 @@
 import { NextPage, GetServerSideProps } from 'next';
 import styled from 'styled-components';
 import fetch from 'isomorphic-fetch';
+import { ApiUrl } from '@env';
 import Title from '../../components/Title';
 import Options from '../../components/Options';
 import Card from '../../components/Card';
@@ -25,7 +26,7 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => {
       <Title>{game.name}</Title>
       <GameBoard>
         <Card card={getCard(game.current_card)} />
-        <Options options={game.options} />
+        <Options gameId={game.id} options={game.options} />
       </GameBoard>
     </div>
   );
@@ -33,7 +34,7 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => {
 
 export const getServerSideProps: GetServerSideProps<GamePageProps> = async (context) => {
   const { gameId } = context.query;
-  const response = await fetch(`http://127.0.0.1:8000/bus/game/${gameId}`);
+  const response = await fetch(`${ApiUrl}/bus/game/${gameId}`);
 
   if (response.ok) {
     const gameData = await response.json() as Game;

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import playTurn from 'actions/playTurn';
 
 type Props = {
+  gameId: number;
   options: string[];
 };
 
@@ -21,10 +23,16 @@ const Wrapper = styled.div`
   }
 `;
 
-const Options: React.SFC<Props> = ({ options }) => (
+const Options: React.FC<Props> = ({ gameId, options }) => (
   <Wrapper>
     {options.map((option) => (
-      <button key={option} type="button">{option}</button>
+      <button
+        key={option}
+        type="button"
+        onClick={() => playTurn(gameId, option)}
+      >
+        {option}
+      </button>
     ))}
   </Wrapper>
 );
