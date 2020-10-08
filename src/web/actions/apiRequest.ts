@@ -26,7 +26,7 @@ async function sendRequest<T = null>(path: string, config: RequestInit, urlBase?
 }
 
 export function getRequest<T>(path: string, urlBase?: string) {
-  return sendRequest<T>(path, { method: 'GET' }, urlBase);
+  return sendRequest<T>(path, { method: 'GET', credentials: 'include' }, urlBase);
 }
 
 export function postRequest<T>(path: string, body: any, urlBase?: string) {

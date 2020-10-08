@@ -8,14 +8,17 @@ type Props = {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+
 
   button {
     background-color: ${({ theme }) => theme.buttons.primary};
     color: ${({ theme }) => theme.buttons.text};
     border: none;
     padding: 6px 16px;
-    margin-bottom: 12px;
+    margin: 20px 12px;
 
     &:last-child {
       margin-bottom: 0;

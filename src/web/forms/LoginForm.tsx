@@ -24,9 +24,12 @@ export const LoginForm = () => (
         headers: {
           'Content-Type': 'application/json',
         },
+        mode: 'cors',
+        credentials: 'include',
       });
 
       if (response.ok) {
+        console.log(await response.text());
         Router.push('/dashboard');
       } else {
         alert(await response.text()); // TODO: use proper error handling

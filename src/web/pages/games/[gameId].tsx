@@ -13,6 +13,7 @@ type GamePageProps = {
 const GameBoard = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `;
 
 const GamePage: NextPage<GamePageProps> = ({ game }) => {
@@ -25,12 +26,12 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => {
   return (
     <div>
       <Title>{game.name}</Title>
+      <Options gameId={game.id} options={game.options} />
       <GameBoard>
         <PlayerHand cards={game.current_hand} />
         {/* {game.current_card
           ? <Card card={getCard(game.current_card)} />
           : <span>TODO: empty card</span>} */}
-        <Options gameId={game.id} options={game.options} />
       </GameBoard>
     </div>
   );

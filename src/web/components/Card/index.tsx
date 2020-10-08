@@ -1,4 +1,5 @@
 import styled, { ThemeProps, DefaultTheme } from 'styled-components';
+import devices from '@utils/devices';
 import CardPortrait from './CardPortrait';
 
 type Props = {
@@ -15,14 +16,22 @@ const CardWraper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: space-between;
-  height: ${cardHeight * 100}px;
-  width: ${cardWidth * 100}px;
-  margin: 0 16px;
+  justify-content: center;
+  /* margin: 0 16px; */
   border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 2px ${({ theme }) => theme.colors.grey[900]},
     0 0px 0px 1px rgba(0,0,0,0.2);
+
+  height: ${cardHeight * 30}px;
+  width: ${cardWidth * 30}px;
+
+  @media ${devices.tablet} {
+    height: ${cardHeight * 100}px;
+    width: ${cardWidth * 100}px;
+    margin: 0 16px;
+    justify-content: space-between;
+  }
 
   * {
     color: ${cardColor};
@@ -37,16 +46,21 @@ const CardWraper = styled.div`
     padding: 10px 0;
 
     .value {
-      font-size: 30px;
+      font-size: 40px;
     }
 
     .suit {
       font-size: 30px;
-      line-height: 20px
+      line-height: 30px
     }
 
     &:last-child {
-      flex-flow: column-reverse;
+      display: none;
+
+      @media ${devices.tablet} {
+        display: flex;
+        flex-flow: column-reverse;
+      }
 
       .value,
       .suit {

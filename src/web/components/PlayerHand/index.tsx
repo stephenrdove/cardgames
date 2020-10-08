@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Card from '@components/Card';
+import devices from '@utils/devices';
 import getCard from '@utils/getCard';
 
 type Props = {
@@ -8,16 +9,29 @@ type Props = {
 
 const Wrapper = styled.ul`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   list-style: none;
   padding: 0;
 
   .stacked-card {
-    margin-left: -100px; /* TODO: make this dynamic */
-
+    /* margin-top: -200px; */
+    
     &:first-child {
-      margin-left: 0;
+      margin-top: 0;
     }
+  }
+
+  @media ${devices.laptop} {
+    flex-direction: row;
+
+    .stacked-card {
+      margin-left: -100px; /* TODO: make this dynamic */
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+
   }
 `;
 

@@ -1,40 +1,45 @@
 import styled from 'styled-components';
+import devices from '@utils/devices';
 import getCardLayout from '@utils/getCardLayout';
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-grow: 1;
+  display: none;
 
-  ul {
+  @media ${devices.tablet} {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
 
-    &:only-child {
-      margin-right: auto;
-      margin-left: auto;
-    }
-    &:nth-child(1) {
-      order: 1;
-    }
-    &:nth-child(2) {
-      order: 3;
-    }
-    &:nth-child(3) {
-      order: 2;
-    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      list-style: none;
+      padding: 0px;
 
-    li {
-      font-size: 70px;
-      line-height: 50px;
+      &:only-child {
+        margin-right: auto;
+        margin-left: auto;
+      }
+      &:nth-child(1) {
+        order: 1;
+      }
+      &:nth-child(2) {
+        order: 3;
+      }
+      &:nth-child(3) {
+        order: 2;
+      }
 
-      &.reversed {
-        transform: rotate(180deg);
+      li {
+        font-size: 70px;
+        line-height: 50px;
+
+        &.reversed {
+          transform: rotate(180deg);
+        }
       }
     }
   }
